@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 
 type Language = 'en' | 'ar';
 
@@ -10,7 +10,12 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
+export function LanguageProvider({ children }: Readonly<{ children: React.ReactNode }>) {
+
+  const getDeviceLanguage = (): Language => {
+    const deviceLang = navigator.language.split("-")[0];
+    return deviceLang === "en" ? "en" : "ar";
+  };
   const [language, setLanguage] = useState<Language>('en');
   const [dir, setDir] = useState<'ltr' | 'rtl'>('ltr');
 
@@ -22,8 +27,14 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     setDir(language === 'ar' ? 'rtl' : 'ltr');
   }, [language]);
 
+  useEffect(() => {
+    setLanguage(getDeviceLanguage());
+  }, []);
+
+  const contextValue = useMemo(() => ({ language, setLanguage, dir }), [language, dir]);
+
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, dir }}>
+    <LanguageContext.Provider value={contextValue}>
       {children}
     </LanguageContext.Provider>
   );

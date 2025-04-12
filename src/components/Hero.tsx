@@ -2,42 +2,49 @@
 import { ArrowRight, Wallet, Percent } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
+
+const translations = {
+  ar: {
+    zeroCommission: 'بدون عمولة',
+    title: 'احتفظ بـ',
+    titleSpan: '100%',
+    titleEnd: ' من أرباحك',
+    subtitle: 'وداعًا للعمولات العالية والأرباح غير الثابتة! مع باقات الاشتراك من جيني، استمتع بمشاوير بدون عمولة واحتفظ بـ100% من أرباحك، اختار الخطة اللي تناسب أهدافك، انطلق مع جيني واربح أكثر!',
+    startEarning: 'اربح أكثر',
+    features: {
+      commission: 'مشاوير بدون عمولة',
+      earnings: 'أرباح أكثر',
+      activation: 'تفعيل فوري'
+    }
+  },
+  en: {
+    zeroCommission: 'Zero Commission',
+    title: 'Keep ',
+    titleSpan: '100%',
+    titleEnd: ' of what you earn',
+    subtitle: "Say goodbye to high commissions and uncertain earnings! With Jeeny's Subscription Plans, enjoy zero commission and keep 100% of your earnings. Choose the plan that best fits your driving goals and boost your earnings instantly.",
+    startEarning: 'Start Earning More',
+    features: {
+      commission: 'Drive with Zero Commission',
+      earnings: 'Unlock More Earnings',
+      activation: 'Get Instance Activation'
+    }
+  }
+};
+
 const Hero = () => {
   const { language } = useLanguage();
 
-  const translations = {
-    ar: {
-      zeroCommission: 'بدون عمولة',
-      title: 'احتفظ بـ',
-      titleSpan: '100%',
-      titleEnd: ' من أرباحك',
-      subtitle: 'وداعًا للعمولات العالية والأرباح غير الثابتة! مع باقات الاشتراك من جيني، استمتع بمشاوير بدون عمولة واحتفظ بـ100% من أرباحك، اختار الخطة اللي تناسب أهدافك، انطلق مع جيني واربح أكثر!',
-      startEarning: 'اربح أكثر',
-      features: {
-        commission: 'مشاوير بدون عمولة',
-        earnings: 'أرباح أكثر',
-        activation: 'تفعيل فوري'
-      }
-    },
-    en: {
-      zeroCommission: 'Zero Commission',
-      title: 'Keep ',
-      titleSpan: '100%',
-      titleEnd: ' of what you earn',
-      subtitle: "Say goodbye to high commissions and uncertain earnings! With Jeeny's Subscription Plans, enjoy zero commission and keep 100% of your earnings. Choose the plan that best fits your driving goals and boost your earnings instantly.",
-      startEarning: 'Start Earning More',
-      features: {
-        commission: 'Drive with Zero Commission',
-        earnings: 'Unlock More Earnings',
-        activation: 'Get Instance Activation'
-      }
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
   const t = translations[language];
 
   return (
-    <section className="pt-24 pb-12 md:pt-32 md:pb-16" dir={language === 'ar' ? 'rtl' : 'ltr'} id='benefits'>
+    <section className="pt-24 pb-12 md:pt-24 md:pb-12" dir={language === 'ar' ? 'rtl' : 'ltr'} id='benefits'>
       <div className="max-w-7xl mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           <span className="inline-block px-4 py-1.5 mb-6 text-sm font-medium text-jeeny bg-jeeny/10 rounded-full">
@@ -53,8 +60,8 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="#pricing" 
+          <button
+              onClick={() => scrollToSection('pricing')}
               className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-jeeny hover:bg-jeeny/90 rounded-md transition-colors group"
             >
               {t.startEarning}
@@ -64,7 +71,7 @@ const Hero = () => {
               {language === 'ar' && (
                 <ArrowRight className="mr-2 h-4 w-4 rotate-180 group-hover:-translate-x-1 transition-transform" />
               )}
-            </a>
+            </button>
           </div>
           
           <div className="mt-12 flex flex-wrap justify-center items-center gap-8">
