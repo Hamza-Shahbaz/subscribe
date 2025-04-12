@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --jeeny: 271 52% 37%;
+  --jeeny-dark: 271 52% 27%;
+  --jeeny-light: 271 52% 97%;
+}
+
+@layer base {
+  body {
+    @apply antialiased bg-gray-50;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4;
+  }
+}
+
+/* Payment form specific styles */
+.apple-pay-button {
+  -webkit-appearance: -apple-pay-button;
+  -apple-pay-button-type: plain;
+  -apple-pay-button-style: black;
+  height: 48px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+/* Animation utilities */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
