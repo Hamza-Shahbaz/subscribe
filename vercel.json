@@ -4,7 +4,7 @@
     "trailingSlash": false,
     "headers": [
       {
-        "source": "/(.*\\.(js|css|jpg|jpeg|gif|png|svg|ico|woff|woff2|ttf|eot|otf)$)",
+        "source": "/(.*)",
         "headers": [
           {
             "key": "Cache-Control",
