@@ -86,6 +86,7 @@ const Index = () => {
   const t = translations[language];
 
   const getUserData = async (phone?: any) => {
+    console.log("first")
     try {
       setIsLoading(true);
       if (!params.id && !phone) {
@@ -100,6 +101,7 @@ const Index = () => {
         temp.driver_id = params.id;
       }
       const body = JSON.stringify(temp);
+      console.log(body, baseUrl);
       const response = await fetch(baseUrl, {
         method: "Post",
         headers: {
